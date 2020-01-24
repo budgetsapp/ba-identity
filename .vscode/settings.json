@@ -1,0 +1,6 @@
+{
+  "python.pythonPath": "venv/bin/python",
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2
+}
