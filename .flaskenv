@@ -1,4 +1,0 @@
-FLASK_APP=setup.py
-FLASK_ENV=development
-FLASK_DEBUG=False
-FLASK_RUN_PORT=5011
