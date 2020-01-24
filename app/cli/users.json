@@ -1,0 +1,14 @@
+[
+  {
+    "id": "03a12070-50c3-4312-b978-394f42054693",
+    "login": "ba-user-1",
+    "display_name": "BA User 1",
+    "password": "ba-password"
+  },
+  {
+    "id": "bcb443c1-9346-468c-821f-7433c8648aa3",
+    "login": "ba-user-2",
+    "display_name": "BA User 2",
+    "password": "ba-password"
+  }
+]

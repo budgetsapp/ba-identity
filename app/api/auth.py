@@ -6,12 +6,9 @@ from app.services.auth import (
     get_access_token
 )
 from app.services.utils import build_response
-from app.models import user
+from app.services import user as user_service
 
 blueprint = Blueprint('auth', __name__)
-
-sample_user = user.User(
-    login='test', display_name="User Name", roles=['foo', 'bar'])
 
 
 @blueprint.route('/get-tokens', methods=['POST'])
@@ -26,9 +23,8 @@ def get_token():
     if not password:
         return build_response(message="Missing 'password' parameter"), 400
 
-    password_hash = sample_user.password_hash  # check password hash
-    # call db methods to check user
-    if login != sample_user.login or password_hash != sample_user.password_hash:
+    user = user_service.get_user_by_login(login)
+    if login != user.login:  # or password_hash != sample_user.password_hash:
         return build_response(message="Bad login or password"), 401
 
     tokens = get_tokens(sample_user)
@@ -40,9 +36,8 @@ def get_token():
 @blueprint.route('/refresh-token', methods=['POST'])
 @jwt_refresh_token_required
 def refresh_token():
-    current_user = get_jwt_identity()
+    login = get_jwt_identity()
 
-    # get user from DB by identity
-    print('=====> current user' + current_user)
-    access_token = get_access_token(sample_user)
+    # user = user_service.get_user_by_login(login)
+    access_token = get_access_token(login)
     return build_response(access_token=access_token), 200
