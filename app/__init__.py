@@ -3,7 +3,6 @@ import os
 from flask import Flask
 from .extensions import auth, db
 from app.api.auth import blueprint as auth_blueprint
-from app import cli
 
 
 config = {
@@ -27,6 +26,5 @@ def create_app():
     app.register_blueprint(auth_blueprint)
 
     db.init_app(app)
-    cli.init_cli_commands(app)
 
     return app
