@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-from .extensions import auth
+from .extensions import auth, db
 from app.api.auth import blueprint as auth_blueprint
 
 
@@ -24,5 +24,7 @@ def create_app():
 
     auth.init_app(app)
     app.register_blueprint(auth_blueprint)
+
+    db.init_app(app)
 
     return app
