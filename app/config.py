@@ -10,6 +10,8 @@ class Config:
     JWT_REFRESH_TOKEN_EXPIRES = 604800  # s, = 7 days
     JWT_ERROR_MESSAGE_KEY = 'message'
 
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+
     @property
     def JWT_SECRET_KEY(self):
         return os.getenv("JWT_SECRET_KEY", None)
