@@ -1,9 +1,7 @@
 import os
 
 from flask import Flask
-from .extensions import auth
-from app.api.auth import blueprint as auth_blueprint
-
+from app.api import auth
 
 config = {
     'dev': 'app.config.DevConfig',
@@ -22,7 +20,6 @@ def create_app():
     config_object = import_string(config[config_name])()
     app.config.from_object(config_object)
 
-    auth.init_app(app)
-    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(auth.blueprint)
 
     return app
