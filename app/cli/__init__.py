@@ -2,11 +2,13 @@
 import click
 from flask.cli import with_appcontext
 from app.extensions import db
+from app.services import user as user_service
 
 
 def init_cli_commands(app):
     app.cli.add_command(init_db_command)
     app.cli.add_command(load_db_data_command)
+    app.cli.add_command(get_user_command)
 
 
 def init_db():
@@ -100,3 +102,10 @@ def load_db_data():
 def load_db_data_command():
     load_db_data()
     click.echo('Loaded data')
+
+
+@click.command("get-user")
+@with_appcontext
+def get_user_command():
+    user = user_service.get_user_by_login("ba-user-1")
+    click.echo(user)
