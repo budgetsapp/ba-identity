@@ -13,9 +13,7 @@ def init_cli_commands(app):
 
 def init_db():
     # import is important
-    import app.models.role
-    import app.models.user
-    import app.models.user_roles
+    import app.models
     # then create
     db.create_all()
 
@@ -39,8 +37,7 @@ def get_item_by_value(items, key, value):
 
 
 def load_db_data():
-    from app.models.role import Role
-    from app.models.user import User
+    from app.models.user import User, Role
     import json
     import os
 

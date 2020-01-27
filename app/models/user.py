@@ -1,13 +1,17 @@
-# This is an example of a complex object that we could build
-# a JWT from. In practice, this will likely be something
-# like a SQLAlchemy instance.
 from werkzeug.security import (
     generate_password_hash,
     check_password_hash
 )
 
 from app.extensions import db
-from .user_roles import user_roles
+
+
+user_roles = db.Table('user_roles',
+                      db.Column('role_id', db.String(36), db.ForeignKey(
+                          'role.id'), primary_key=True),
+                      db.Column('user_id', db.String(36), db.ForeignKey(
+                          'user.id'), primary_key=True)
+                      )
 
 
 class User(db.Model):
@@ -30,4 +34,12 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
-        return '<User %r>' % self.display_name
+        return f"<User display_name={self.display_name} roles={self.roles}"
+
+
+class Role(db.Model):
+    id = db.Column(db.String(36), primary_key=True)
+    display_name = db.Column(db.String(50), nullable=False)
+
+    def __repr__(self):
+        return f"<Role display_name={self.display_name}>"

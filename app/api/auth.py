@@ -27,7 +27,7 @@ def get_token():
     if login != user.login:  # or password_hash != sample_user.password_hash:
         return build_response(message="Bad login or password"), 401
 
-    tokens = get_tokens(sample_user)
+    tokens = get_tokens(user)
     return build_response(
         access_token=tokens["access_token"],
         refresh_token=tokens["refresh_token"]), 200
