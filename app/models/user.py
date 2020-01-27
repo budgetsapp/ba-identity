@@ -26,6 +26,9 @@ class User(db.Model):
     def password(self):
         raise AttributeError('Password is not a readable')
 
+    def get_role_names(self):
+        return [role.display_name for role in self.roles]
+
     @password.setter
     def password(self, password):
         self.password_hash = generate_password_hash(password)

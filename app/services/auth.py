@@ -13,7 +13,7 @@ get_jwt_identity = get_jwt_identity
 
 def _add_claims_to_access_token(user):
     return {
-        'roles': user.roles,
+        'roles': user.get_role_names(),
         'display_name': user.display_name
     }
 
