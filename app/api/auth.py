@@ -33,11 +33,11 @@ def get_token():
         refresh_token=tokens["refresh_token"]), 200
 
 
-@blueprint.route('/refresh-token', methods=['POST'])
+@blueprint.route('/refresh-token', methods=['GET'])
 @jwt_refresh_token_required
 def refresh_token():
     login = get_jwt_identity()
 
-    # user = user_service.get_user_by_login(login)
-    access_token = get_access_token(login)
+    user = user_service.get_user_by_login(login)
+    access_token = get_access_token(user)
     return build_response(access_token=access_token), 200
