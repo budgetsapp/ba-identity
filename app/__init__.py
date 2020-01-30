@@ -1,6 +1,8 @@
 import os
 
 from flask import Flask
+from flask_cors import CORS
+
 from .extensions import auth, db
 from app.api.auth import blueprint as auth_blueprint
 from app import cli
@@ -13,6 +15,7 @@ config = {
 }
 
 app = Flask(__name__, instance_relative_config=True)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 def create_app():
