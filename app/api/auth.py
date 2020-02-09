@@ -11,7 +11,7 @@ from app.services import user as user_service
 blueprint = Blueprint('auth', __name__)
 
 
-@blueprint.route('/get-tokens', methods=['POST'])
+@blueprint.route('/signin', methods=['POST'])
 def get_token():
     if not request.is_json:
         return build_response(message="Missing JSON in request"), 400
@@ -33,7 +33,7 @@ def get_token():
         refresh_token=tokens["refresh_token"]), 200
 
 
-@blueprint.route('/refresh-token', methods=['GET'])
+@blueprint.route('/refresh', methods=['GET'])
 @jwt_refresh_token_required
 def refresh_token():
     login = get_jwt_identity()
