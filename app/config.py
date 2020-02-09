@@ -6,7 +6,7 @@ class Config:
     DEBUG = False
     TESTING = False
 
-    JWT_ACCESS_TOKEN_EXPIRES = 900  # s, = 15 min
+    JWT_ACCESS_TOKEN_EXPIRES = 3600000  # s, = 60 min
     JWT_REFRESH_TOKEN_EXPIRES = 604800  # s, = 7 days
     JWT_ERROR_MESSAGE_KEY = 'message'
 
