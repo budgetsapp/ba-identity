@@ -2,7 +2,6 @@ import os
 
 
 class Config:
-    FLASK_ENV = 'production'
     DEBUG = False
     TESTING = False
 
@@ -18,16 +17,21 @@ class Config:
 
 
 class ProdConfig(Config):
-    FLASK_ENV = 'production'
+    pass
 
 
 class DevConfig(Config):
-    FLASK_ENV = 'development'
     DEBUG = True
 
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///db.sqlite'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///C:\\Users\\Vadim\\Documents\\db\\db.sqlite'
+
+
+class DevDockerConfig(Config):
+    DEBUG = True
+
+    SQLALCHEMY_DATABASE_URI = 'sqlite:////usr/db/db.sqlite'
 
 
 class TestConfig(Config):
-    FLASK_ENV = 'testing'
+    # FLASK_ENV = 'testing'
     TESTING = True

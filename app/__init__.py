@@ -9,6 +9,7 @@ from app import cli
 
 
 config = {
+    "dev-docker": "app.config.DevDockerConfig",
     'dev': 'app.config.DevConfig',
     'prod': 'app.config.ProdConfig',
     'test': 'app.config.TestConfig'
@@ -25,6 +26,9 @@ def create_app():
     from werkzeug.utils import import_string
     config_object = import_string(config[config_name])()
     app.config.from_object(config_object)
+    print('===> Config name', config_name)
+    print('===> SQLALCHEMY_DATABASE_URI',
+          config_object.SQLALCHEMY_DATABASE_URI)
 
     auth.init_app(app)
     app.register_blueprint(auth_blueprint, url_prefix='/v1')
