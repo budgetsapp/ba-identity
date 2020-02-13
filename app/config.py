@@ -20,18 +20,12 @@ class ProdConfig(Config):
     pass
 
 
-class DevConfig(Config):
+class LocalConfig(Config):
     DEBUG = True
-
     SQLALCHEMY_DATABASE_URI = 'sqlite:///C:\\Users\\Vadim\\Documents\\db\\db.sqlite'
 
 
 class DevDockerConfig(Config):
-    DEBUG = True
-
+    DEBUG = False
+    FLASK_RUN_PORT = 8080
     SQLALCHEMY_DATABASE_URI = 'sqlite:////usr/db/db.sqlite'
-
-
-class TestConfig(Config):
-    # FLASK_ENV = 'testing'
-    TESTING = True

@@ -10,9 +10,8 @@ from app import cli
 
 config = {
     "dev-docker": "app.config.DevDockerConfig",
-    'dev': 'app.config.DevConfig',
+    'local': 'app.config.LocalConfig',
     'prod': 'app.config.ProdConfig',
-    'test': 'app.config.TestConfig'
 }
 
 app = Flask(__name__, instance_relative_config=True)
@@ -20,7 +19,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 def create_app():
-    config_name = os.getenv('FLASK_CONFIG', 'dev')
+    config_name = os.getenv('FLASK_CONFIG', 'local')
 
     # app.config.from_object(config[config_name])
     from werkzeug.utils import import_string

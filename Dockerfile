@@ -10,13 +10,10 @@ RUN pip install -r ./requirements.txt
 COPY ./ ./
 
 # default values
-ENV FLASK_APP=setup.py
-ENV FLASK_ENV=development
-ENV FLASK_RUN_PORT=8080
-ENV FLASK_CONFIG=dev-docker
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV JWT_SECRET_KEY=secret_key
-# to see print statements set to 1
-ENV PYTHONUNBUFFERED=1
+ENV FLASK_RUN_PORT=8080
+ENV FLASK_ENV=development
+ENV FLASK_CONFIG=dev-docker
+
 
 CMD ["flask", "run"]
