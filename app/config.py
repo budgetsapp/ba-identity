@@ -25,6 +25,10 @@ class LocalConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///C:\\Users\\Vadim\\Documents\\db\\db.sqlite'
 
 
+class LocalMacConfig(LocalConfig):
+    SQLALCHEMY_DATABASE_URI = 'sqlite:////usr/local/db/db.sqlite'
+
+
 class DevDockerConfig(Config):
     DEBUG = False
     FLASK_RUN_PORT = 8080
